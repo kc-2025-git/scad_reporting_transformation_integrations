@@ -1,4 +1,4 @@
-# SCAD Reporting Transformation Core
+# SCAD Reporting Transformation - Data Integrations
 
 This repository contains the transformation scripts (`.sql`, `.py`, `.ipynb`) that perform data processing for SCAD reporting.
 
