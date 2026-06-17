@@ -1,6 +1,6 @@
-# This is a Databricks asset bundle definition for <project_name>.
+# This is a Databricks asset bundle definition for Data Integrations.
 bundle:
-  name: scad_reporting_transformation_<project_name>
+  name: scad_reporting_transformation_integrations
 
 sync:
   paths:
