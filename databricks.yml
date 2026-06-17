@@ -1,0 +1,55 @@
+# This is a Databricks asset bundle definition for <project_name>.
+bundle:
+  name: scad_reporting_transformation_<project_name>
+
+sync:
+  paths:
+    - transformations
+
+run_as:
+  service_principal_name: ${var.reporting_run_sp_id}
+
+permissions:
+  - level: CAN_VIEW
+    service_principal_name: ${var.reporting_run_sp_id}
+  - level: CAN_MANAGE
+    service_principal_name: ${var.reporting_deploy_sp_id}
+
+targets:
+  dev:
+    mode: production
+    workspace:
+      host: https://adb-7405605234940495.15.azuredatabricks.net/
+      root_path: /Workspace/Configs/${bundle.name}
+    permissions:
+      - level: CAN_MANAGE
+        group_name: reporting
+
+  stg:
+    mode: production
+    workspace:
+      host: https://adb-7405611231682359.19.azuredatabricks.net/
+      root_path: /Workspace/Configs/${bundle.name}
+    permissions:
+      - level: CAN_VIEW
+        group_name: reporting
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-7405618228090866.6.azuredatabricks.net/
+      root_path: /Workspace/Configs/${bundle.name}
+    permissions:
+      - level: CAN_VIEW
+        group_name: reporting
+
+variables:
+  reporting_run_sp_id:
+    description: The service principal id for the reporting run.
+    lookup:
+      service_principal: "sp-reporting-run"
+
+  reporting_deploy_sp_id:
+    description: The service principal id for the reporting deployment.
+    lookup:
+      service_principal: "sp-reporting-deploy"

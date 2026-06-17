@@ -1,0 +1,22 @@
+# General ignore files
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+ENV/
+.env
+.flaskenv
+secrets.py
+.pytest_cache/
+.coverage
+htmlcov/
+.vscode/
+scratch/
+.agent/
+
+#project specific ignore files
+reference/
+__builtins__.pyi
+.databricks/
