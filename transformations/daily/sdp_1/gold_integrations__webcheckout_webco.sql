@@ -1,11 +1,11 @@
 /*******************************************************************************
 Recreation of:
 	Package: WOKSCAD
-	Procedure: P_GenerateWebCheckOutData
+	Procedure: P_GenerateWebCheckOutData (webco.csv)
 	
 For data integrations report
 *******************************************************************************/
-CREATE OR REPLACE MATERIALIZED VIEW gold_integrations.webcheckout_generatedata
+CREATE OR REPLACE MATERIALIZED VIEW gold_integrations.webcheckout_webco
 AS
 WITH CURRENT_TERM AS (
     SELECT
