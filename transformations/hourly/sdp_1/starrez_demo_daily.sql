@@ -491,7 +491,7 @@ HEADER_ROWS AS (
     'Entry.ID1|Entry.ID2|Entry.NameTitle|Entry.NameLast|Entry.NameFirst|Entry.NameOther|Entry.NamePreferred|Entry.Birth_GenderEnum|Entry.DOB|EntryDetail.Married|EntryDetail.Citizenship_CountryID.Abbreviation|EntryDetail.Ethnicity|Entry.DirectoryFlagPrivacy|EntryAddress[Alternate Email].Email|EntryAddress[Mailing].Email|EntryAddress[Mailing].Street|EntryAddress[Mailing].Street2|EntryAddress[Mailing].City|EntryAddress[Mailing].StateProvince|EntryAddress[Mailing].ZipPostcode|EntryAddress[Mailing].CountryID.Abbreviation|EntryAddress[Mailing].Phone|EntryAddress[Mailing].PhoneMobileCell|EntryAddress[Home].Email|EntryAddress[Home].Street|EntryAddress[Home].Street2|EntryAddress[Home].City|EntryAddress[Home].StateProvince|EntryAddress[Home].ZipPostcode|EntryAddress[Home].CountryID.Abbreviation|EntryAddress[Home].Phone|EntryAddress[Home].PhoneMobileCell|EntryAddress[Emergency].ContactName|EntryAddress[Emergency].Street|EntryAddress[Emergency].Street2|EntryAddress[Emergency].City|EntryAddress[Emergency].StateProvince|EntryAddress[Emergency].ZipPostcode|EntryAddress[Emergency].Phone|EntryAddress[Emergency].Relationship|EntryDetail.EnrollmentClass|EntryDetail.EnrollmentLevel|EntryDetail.EnrollmentStatus|EntryDetail.EnrollmentTerm|EntryDetail.AcademicHold|EntryDetail.IncidentHold|EntryDetail.AccountHold|EntryDetail.Athlete|EntryDetail.AthleteTeam|EntryDetail.CurrentMajor|EntryDetail.CurrentHours|EntryDetail.CumulativeHours|EntryDetail.CurrentGPA|EntryDetail.CumulativeGPA|EntryDetail.ExpectedGraduationDate|EntryDetail.Residency|EntryCustomField.AdmissionAdvisor|EntryDetail.VisaDetails|EntryCustomField.HousingExemptionIndicator|EntryCustomField.FERPA|EntryCustomField.FallTerm|EntryCustomField.FallLocation|EntryCustomField.FallHousingPaymentDate|EntryCustomField.WinterTerm|EntryCustomField.WinterLocation|EntryCustomField.WinterHousingPaymentDate|EntryCustomField.SpringTerm|EntryCustomField.SpringLocation|EntryCustomField.SpringHousingPaymentDate|EntryCustomField.SummerTerm|EntryCustomField.SummerLocation|EntryCustomField.SummerHousingPaymentDate' AS REPORT_TEXT
 )
 SELECT 
-    tmpPidm, tmpTermACYR, tmpPulledTerm, 
+    tmpPidm, tmpTermACYR, tmpPulledTerm, grp_num,
     999 AS REPORT_ORDER, 
     0 AS IS_HEADER, 
     COALESCE(CAST(`Entry.ID1` AS STRING), '') || '|' || 
@@ -569,7 +569,7 @@ SELECT
 FROM QUERY_ROWS
 UNION ALL
 SELECT 
-    NULL AS tmpPidm, NULL AS tmpTermACYR, NULL AS tmpPulledTerm,
+    NULL AS tmpPidm, NULL AS tmpTermACYR, NULL AS tmpPulledTerm, NULL AS grp_num,
     REPORT_ORDER, 
     IS_HEADER, 
     REPORT_TEXT
