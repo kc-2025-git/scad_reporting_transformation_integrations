@@ -5,6 +5,16 @@ Recreation of:
 	
 For data integrations report
 *******************************************************************************/
+CREATE TABLE IF NOT EXISTS {catalog}.gold_integrations.starrez_demo_daily_control (
+  WSRSREZ_PIDM decimal(38,10),
+  WSRSREZ_INIT_TERM varchar(6),
+  WSRSREZ_LAST_ACYR varchar(4),
+  WSRSREZ_LAST_TERM varchar(6),
+  WSRSREZ_LAST_SENT timestamp,
+  WSRSREZ_STATUS_IND varchar(1),
+  WSRSREZ_ACTIVITY_DATE timestamp
+);
+
 MERGE INTO {catalog}.gold_integrations.starrez_demo_daily_control AS target
 USING (
     SELECT
@@ -13,6 +23,7 @@ USING (
         MAX(tmpPulledTerm) as tmpPulledTerm
     FROM {catalog}.gold_integrations.starrez_demo_daily
     WHERE IS_HEADER = 0
+      AND date_part("hour", convert_timezone('America/New_York', current_timestamp())) % 2 = 0
     GROUP BY tmpPidm
 ) AS source
 ON CAST(target.wsrsrez_pidm AS DECIMAL(8,0)) = source.tmpPidm
